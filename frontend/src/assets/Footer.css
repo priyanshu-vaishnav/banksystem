@@ -1,0 +1,50 @@
+/* Footer */
+.footer {
+  width: 100%;
+  padding: 20px 30px;
+  background: white;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.footer-divider {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.footer-copy {
+  color: #999;
+  font-size: 13px;
+}
+
+.footer-links {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #999;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #333;
+}

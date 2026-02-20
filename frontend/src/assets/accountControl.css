@@ -129,3 +129,14 @@ button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+@media screen and (max-width: 850px) {
+  .action-section {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+}

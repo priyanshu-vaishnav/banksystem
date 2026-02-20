@@ -14,6 +14,7 @@ function CreateAccount() {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);  // ← new
 
   useEffect(() => {
     fetchAccounts();
@@ -25,10 +26,8 @@ function CreateAccount() {
         "http://localhost:3000/api/account/myaccount",
         { withCredentials: true }
       );
-
       const data = res.data.accounts || [];
       setAccounts(data);
-
     } catch (err) {
       setAccounts([]);
     }
@@ -36,6 +35,7 @@ function CreateAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);  // ← start loading
 
     try {
       await axios.post(
@@ -55,7 +55,6 @@ function CreateAccount() {
       fetchAccounts();
 
     } catch (err) {
-
       setIsError(true);
 
       if (err.response?.data?.errors) {
@@ -65,6 +64,8 @@ function CreateAccount() {
       } else {
         setMessage("Something went wrong");
       }
+    } finally {
+      setIsLoading(false);  // ← stop loading always
     }
 
     setTimeout(() => setMessage(""), 4000);
@@ -113,6 +114,7 @@ function CreateAccount() {
               <select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
+                disabled={isLoading}
               >
                 <option value="INR">INR</option>
                 <option value="USD">USD</option>
@@ -126,6 +128,7 @@ function CreateAccount() {
                   value={phoneno}
                   onChange={(e) => setPhoneno(e.target.value)}
                   required
+                  disabled={isLoading}
                 />
               </div>
 
@@ -136,6 +139,7 @@ function CreateAccount() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   required
+                  disabled={isLoading}
                 />
               </div>
 
@@ -146,16 +150,23 @@ function CreateAccount() {
                   value={documentid}
                   onChange={(e) => setDocumentid(e.target.value)}
                   required
+                  disabled={isLoading}
                 />
               </div>
 
-               <div className="flex">
-
-              <button type="submit">Create</button>
-              <button type="button" className="cancel-btn" onClick={() => setShowForm(false)} >
-                Cancel
-              </button>
-               </div>
+              <div className="flex">
+                <button type="submit" disabled={isLoading}>
+                  {isLoading ? "Creating your account..." : "Create"}
+                </button>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={() => setShowForm(false)}
+                  disabled={isLoading}
+                >
+                  Cancel
+                </button>
+              </div>
 
             </form>
           </div>

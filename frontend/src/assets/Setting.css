@@ -58,12 +58,14 @@
 /* Responsive */
 @media (max-width: 768px) {
   .setting-menu {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    min-height: auto;
-    padding: 20px;
-  }
+        display: block;
+        flex-direction: column;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        
+
+    }
 
   .setting-menu a,
   .delete-btn {
@@ -71,3 +73,4 @@
     padding: 10px 12px;
   }
 }
+
