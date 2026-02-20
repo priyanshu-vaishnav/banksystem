@@ -110,6 +110,11 @@ function Register() {
             ))}
           </div>
         )}
+          {message && (
+  <div className={isError ? "toast-error" : "toast-success"}>
+    {message}
+  </div>
+)}
       </div>
     </div>
   );
