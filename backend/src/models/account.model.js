@@ -4,21 +4,38 @@ const accountSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: [true,"Account must be assosiated with user"],
-        index :true,
+        required: [true, "Account must be assosiated with user"],
+        index: true,
     },
     status: {
         type: String,
         enum: {
             values: ["ACTIVE", "FROZEN", "DELETED"],
-            message:"account should be ACITVE , FROZEN or CLOSED"
+            message: "account should be ACITVE , FROZEN or CLOSED"
         },
         default: "ACTIVE"
     },
     currency: {
         type: String,
-        required: [true,"currency is required for creating an account"],
+        required: [true, "currency is required for creating an account"],
         default: "INR"
+    },
+    phoneno: {
+        type: String,
+        required: [true, "Phone number is required for creating an account"],
+        match: [/^\d{10}$/, "Phone number must be exactly 10 digits"]
+    },
+
+    address: {
+        type: String,
+        required: [true, "Address required before creating an account"],
+        minlength: [5, "Address must be at least 5 characters"]
+    },
+
+    documentid: {
+        type: String,
+        required: [true, "Document ID is required"],
+        match: [/^\d{12}$/, "Document ID must be exactly 12 digits"]
     }
 
 
@@ -60,7 +77,7 @@ accountSchema.methods.getbalance = async function () {
 
 
         ,
-        
+
     {
         $project: {
             _id: 0, balance: {
@@ -69,7 +86,7 @@ accountSchema.methods.getbalance = async function () {
         }
     }])
 
-      if (balanceData.length === 0) {
+    if (balanceData.length === 0) {
         return 0
     }
 

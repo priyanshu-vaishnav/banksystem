@@ -8,22 +8,37 @@ const jwt = require('jsonwebtoken')
 
 async function createAccount(req, res) {
 
-  const user = req.userId
 
-  const isHavingAccount = await accountModel.findOne({ user: req.userId })
+  try {
+    const { phoneno, address, documentid } = req.body
+    const user = req.userId
 
-  if (isHavingAccount) {
-    return res.status(400).json({
-      message: "Cannot create account more than once"
+    const isHavingAccount = await accountModel.findOne({ user: req.userId })
+
+    if (isHavingAccount) {
+      return res.status(400).json({
+        message: "Cannot create account more than once"
+      })
+    }
+    const account = await accountModel.create({
+      user,
+      phoneno,
+      address, documentid
+
     })
-  }
-  const account = await accountModel.create({
-    user
+    res.status(200).json({
+      account,
+      phoneno, address,
+      documentid
+    })
+  } catch (err) {
 
-  })
-  res.status(200).json({
-    account
-  })
+    res.status(400).json(
+      {
+        message: err.message
+      }
+    )
+  }
 
 
 }
@@ -113,7 +128,7 @@ async function deleteAccount(req, res) {
       });
     }
 
-  
+
 
     await accountModel.updateOne(
       { _id: account._id },
@@ -290,4 +305,4 @@ async function deleteAccountPermanent(req, res) {
 
 
 
-module.exports = { createAccount, myAccount, findAccounts, freezeAccount, deleteAccount, unfreezeAccount ,deleteAccountPermanent}
+module.exports = { createAccount, myAccount, findAccounts, freezeAccount, deleteAccount, unfreezeAccount, deleteAccountPermanent }
