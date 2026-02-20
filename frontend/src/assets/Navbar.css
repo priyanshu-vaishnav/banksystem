@@ -1,0 +1,126 @@
+/* Navbar Base */
+.navbar {
+  background: linear-gradient(90deg, #0f172a, #111827);
+  padding: 16px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
+/* Logo */
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #3b82f6;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  padding: 6px 0;
+  transition: 0.3s ease;
+}
+
+
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.nav-links a.active {
+  color: #3b82f6;
+}
+
+/* Logout Button (optional styling if inside nav-links) */
+.nav-links .logout-btn {
+  background: #ef4444;
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.nav-links .logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: rotate(180deg);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    flex-direction: column;
+    width: 240px;
+    padding: 22px;
+    border-radius: 14px;
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    display: none;
+    gap: 18px;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: 0.3s ease;
+  }
+
+  .nav-links.open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav-links a {
+    padding: 4px 0;
+  }
+}

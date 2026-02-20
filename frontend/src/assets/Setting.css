@@ -1,0 +1,73 @@
+.setting-menu {
+  width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #111827, #1f2937);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Common link style */
+.setting-menu a {
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+/* Hover effect */
+.setting-menu a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateX(6px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+}
+
+/* Delete button */
+.delete-btn {
+  margin-top: auto;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+}
+
+/* Optional: active link style */
+.setting-menu a.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .setting-menu {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .setting-menu a,
+  .delete-btn {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}

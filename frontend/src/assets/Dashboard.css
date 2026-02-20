@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #eef2f7, #f8fafc);
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* Container */
+.dashboard-container {
+  max-width: 1250px;
+  margin: 50px auto;
+  padding: 25px;
+}
+
+/* Title */
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Balance Card */
+.balance-card {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: white;
+  padding: 45px;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.balance-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.35);
+}
+
+.balance-card h4 {
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.balance-card h1 {
+  font-size: 42px;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+/* Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 35px;
+}
+
+/* Cards */
+.card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  margin-bottom: 25px;
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin-bottom: 18px;
+  font-size: 18px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+/* Table Wrapper */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table */
+.txn-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+}
+
+.txn-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.txn-table td {
+  padding: 15px;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.txn-table tr {
+  transition: background 0.2s ease;
+}
+
+.txn-table tr:hover {
+  background: #f9fafb;
+}
+
+/* Status Colors */
+.debit {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.credit {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-card h1 {
+    font-size: 34px;
+  }
+}
