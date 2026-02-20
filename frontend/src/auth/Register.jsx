@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import '../assets/Global.css'
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 function Register() {
 
@@ -11,6 +11,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
+  const [validationError, setValidationError] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,22 +26,32 @@ function Register() {
       setIsError(false);
 
       setMessage("Registration Successful");
-      
-      setTimeout(() => 
-        {
-          setMessage("")
-          navigate("/dashboard");
-        
+
+      setTimeout(() => {
+        setMessage("")
+        navigate("/dashboard");
+
       }, 3000);
 
     } catch (error) {
-      setIsError(true);
-      setMessage(
-        error.response?.data?.message || "Registration Failed"
-      );
-    
 
-      setTimeout(() => setMessage(""), 3000);
+      setIsError(true);
+
+      if (error.response?.data?.errors) {
+        // express-validator errors
+        setValidationError(error.response.data.errors);
+        setMessage(""); // main message clear
+      } else {
+        setValidationError([]);
+        setMessage(
+          error.response?.data?.message || "Registration Failed"
+        );
+      }
+
+      setTimeout(() => {
+        setMessage("");
+        setValidationError([]);
+      }, 4000);
     }
   };
 
@@ -85,17 +96,18 @@ function Register() {
           </button>
         </form>
 
-        {message && (
+        {validationError.length > 0 && (
           <div style={{
-      marginTop: "15px",
-      padding: "10px",
-      borderRadius: "6px",
-      backgroundColor: isError ? "#fee2e2" : "#dcfce7",
-      color: isError ? "#b91c1c" : "#166534",
-      fontWeight: "500",
-      textAlign: "center"
-    }}>
-            {message}
+            marginTop: "15px",
+            padding: "10px",
+            borderRadius: "6px",
+            backgroundColor: "#fee2e2",
+            color: "#b91c1c",
+            fontWeight: "500"
+          }}>
+            {validationError.map((err, index) => (
+              <div key={index}>{err.msg}</div>
+            ))}
           </div>
         )}
       </div>
