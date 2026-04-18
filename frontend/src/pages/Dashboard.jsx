@@ -16,12 +16,12 @@ function Dashboard() {
   const loadDashboard = async () => {
     try {
       const accountRes = await axios.get(
-        "http://localhost:3000/api/account/myaccount",
+        `${import.meta.env.VITE_API_BASE_URL}/api/account/myaccount`,
         { withCredentials: true }
       );
 
       const txnRes = await axios.get(
-        "http://localhost:3000/api/transactions/mytransaction",
+        `${import.meta.env.VITE_API_BASE_URL}/api/transactions/mytransaction`,
         { withCredentials: true }
       );
 

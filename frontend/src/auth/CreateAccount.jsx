@@ -23,7 +23,7 @@ function CreateAccount() {
   const fetchAccounts = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/account/myaccount",
+        `${import.meta.env.VITE_API_BASE_URL}/api/account/myaccount`,
         { withCredentials: true }
       );
       
@@ -43,7 +43,7 @@ function CreateAccount() {
 
     try {
       await axios.post(
-        "http://localhost:3000/api/account/createaccount",
+        `${import.meta.env.VITE_API_BASE_URL}/api/account/createaccount`,
         { currency, phoneno, address, documentid },
         { withCredentials: true }
       );

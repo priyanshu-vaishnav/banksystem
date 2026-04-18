@@ -16,7 +16,7 @@ function SendMoney() {
     if (!toAccount.trim()) return;
     setSearching(true);
     try {
-      const res = await axios.get(`http://localhost:3000/api/account/getaccount/${toAccount}`, { withCredentials: true });
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/account/getaccount/${toAccount}`, { withCredentials: true });
       setReceiver(res.data.account);
     } catch {
       setReceiver({ error: true });
@@ -29,7 +29,7 @@ function SendMoney() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:3000/api/transactions/sendmoney",
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/transactions/sendmoney`,
         { toAccount, amount: Number(amount), transactionId: crypto.randomUUID() },
         { withCredentials: true }
       );

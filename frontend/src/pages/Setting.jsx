@@ -8,7 +8,7 @@ function Setting() {
 
 const navigate = useNavigate();
     const handleDelete = async () => {
-        const res = await axios.delete(`http://localhost:3000/api/account/deleteaccount`, { withCredentials: true });
+        const res = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/account/deleteaccount`, { withCredentials: true });
         console.log(res.data);
         navigate("/login");
 

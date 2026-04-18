@@ -13,7 +13,7 @@ function Transactions() {
   const fetchTransactions = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/transactions/mytransaction",
+        `${import.meta.env.VITE_API_BASE_URL}/api/transactions/mytransaction`,
         { withCredentials: true }
       );
 

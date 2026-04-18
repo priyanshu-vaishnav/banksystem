@@ -54,7 +54,7 @@ function AccountControl() {
                         <button
                             disabled={loading}
                             onClick={() =>
-                                requestHandler("patch", "http://localhost:3000/api/account/freezeaccount")
+                                requestHandler("patch", `${import.meta.env.VITE_API_BASE_URL}/api/account/freezeaccount`)
                             }
                         >
                             Freeze
@@ -67,7 +67,7 @@ function AccountControl() {
                         <button
                             disabled={loading}
                             onClick={() =>
-                                requestHandler("patch", "http://localhost:3000/api/account/unfreezeaccount")
+                                requestHandler("patch", `${import.meta.env.VITE_API_BASE_URL}/api/account/unfreezeaccount`)
                             }
                         >
                             Unfreeze
@@ -80,7 +80,7 @@ function AccountControl() {
                         <button
                             disabled={loading}
                             onClick={() =>
-                                requestHandler("delete", "http://localhost:3000/api/account/closeaccount")
+                                requestHandler("delete", `${import.meta.env.VITE_API_BASE_URL}/api/account/closeaccount`)
                             }
                         >
                             Close Account

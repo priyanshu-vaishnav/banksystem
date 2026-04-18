@@ -13,7 +13,7 @@ import CreateAccount from '../src/auth/CreateAccount.jsx';
 import Dashboard from '../src/pages/Dashboard.jsx';
 import Setting from '../src/pages/Setting.jsx';
 import AccountControl from '../src/pages/AccountControl.jsx';
-import Footer from '../src/components/footer.jsx';
+import Footer from '../src/components/Footer.jsx';
 
 
 function App() {
