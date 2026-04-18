@@ -9,7 +9,7 @@ const app = express();
 app.use(cookie());
 app.use(express.json()); // important to require a body from the api call
 app.use(cors({
-  origin: "http://localhost:5173",   // your frontend port
+  origin: "https://banksystem-blush.vercel.app",   // your frontend port
   credentials: true
 }))
 
