@@ -7,11 +7,12 @@ const accRoutes = require('../routes/accounts.routes.js') // routes of accounts
 const transactionRoutes = require('../routes/transaction.routes.js')
 const app = express();
 app.use(cookie());
-app.use(express.json()); // important to require a body from the api call
 app.use(cors({
   origin: "https://banksystem-blush.vercel.app",   // your frontend port
   credentials: true
 }))
+app.use(express.json()); // important to require a body from the api call
+
 
 
 app.use('/api/auth', authRoutes);

@@ -26,7 +26,7 @@ const register = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-    res.cookie('token', token, { httpOnly: true })
+    res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true })
 
 
     res.status(201).json({ user, token });
@@ -52,7 +52,7 @@ const login = async (req, res) => {
         return res.status(400).json({ message: "Invalid password" });
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-    res.cookie('token', token, { httpOnly: true })
+    res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true })
     res.status(200).json({
         msg: "login successful",
         user,
