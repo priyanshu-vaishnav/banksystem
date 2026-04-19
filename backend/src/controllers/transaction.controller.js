@@ -36,7 +36,11 @@ async function createTransaction(req, res) {
         _id: req.userId,
     })
 
-
+    if (!fromUserEmail) {
+        return res.status(400).json({
+            message: "User not found"
+        })
+    }
 
     const toUserEmail = await accountModel.findById(toAccount).populate("user", "email");
     const receiverEmail = toUserEmail.user.email;
@@ -150,12 +154,14 @@ async function createTransaction(req, res) {
         session.endSession();
 
         try {
+            console.log('Sending emails - From:', fromUserEmail.email, 'To:', receiverEmail);
             await Promise.all([
-                emailService.sendTransactionMail(fromUserEmail.email, amount, balance),
+                emailService.sendTransactionMail(fromUserEmail.email, amount, balance - amount),
                 emailService.sendToTransactionMail(receiverEmail, amount)
             ]);
+            console.log('Emails sent successfully');
         } catch (mailError) {
-            console.error("Email failed:", mailError.message);
+            console.error("Email sending failed:", mailError);
         }
         return res.status(201).json({
             message: "Transaction successful",

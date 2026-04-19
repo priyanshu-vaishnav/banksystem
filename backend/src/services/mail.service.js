@@ -19,6 +19,7 @@ transporter.verify((error, success) => {
 
 const sendEmail = async (to, subject, text, html) => {
   try {
+    console.log('Attempting to send email to:', to);
     const info = await transporter.sendMail({
       from: `"BankSystem" <${process.env.EMAIL_USER}>`,
       to,
@@ -26,9 +27,12 @@ const sendEmail = async (to, subject, text, html) => {
       text,
       html,
     });
-    console.log('Message sent: %s', info.messageId);
+    console.log('Message sent successfully:', info.messageId);
+    return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error sending email to', to, ':', error.message);
+    console.error('Full error:', error);
+    return { success: false, error: error.message };
   }
 };
 
