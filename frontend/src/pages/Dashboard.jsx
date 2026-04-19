@@ -36,11 +36,11 @@ function Dashboard() {
   };
 
   if (loading) {
-    return <div className="dashboard-page"><p>Loading dashboard...</p></div>;
+    return <div className="dashboard-page" style={{ padding: '25px'}}><p>Loading dashboard...</p></div>;
   }
 
   if (!accountData) {
-    return <div className="dashboard-page"><p>Failed to load data</p></div>;
+    return <div className="dashboard-page" style={{ padding: '25px' }}><p>Failed to load data</p></div>;
   }
 
   const { account, balance } = accountData;

@@ -13,6 +13,7 @@ import CreateAccount from '../src/auth/CreateAccount.jsx';
 import Dashboard from '../src/pages/Dashboard.jsx';
 import Setting from '../src/pages/Setting.jsx';
 import AccountControl from '../src/pages/AccountControl.jsx';
+import InitialFunds from '../src/auth/InitialFunds.jsx';
 import Footer from '../src/components/Footer.jsx';
 
 
@@ -47,6 +48,8 @@ function App() {
         <Route path = "/setting" element = {isLoggedIn ? <Setting /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
 
         <Route path='/account-control' element = {isLoggedIn ? <AccountControl /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
+
+        <Route path='/initial-funds' element = {isLoggedIn ? <InitialFunds /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
 
       </Routes>
         <Footer />

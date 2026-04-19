@@ -86,4 +86,16 @@ async function logout(req, res) {
 
 }
 
-module.exports = { register, login ,logout}
+async function checkSystemUser(req, res) {
+    try {
+        const user = await userModel.findById(req.userId).select('+systemUser');
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json({ isSystemUser: user.systemUser });
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+}
+
+module.exports = { register, login ,logout, checkSystemUser}

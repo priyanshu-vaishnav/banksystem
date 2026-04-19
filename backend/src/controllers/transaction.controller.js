@@ -191,6 +191,14 @@ async function createInitialTransaction(req, res) {
         })
     }
 
+    // Check if user is system user
+    const user = await userModel.findById(req.userId).select('+systemUser');
+    if (!user || !user.systemUser) {
+        return res.status(403).json({
+            message: "Access denied. Only system users can perform initial funding."
+        });
+    }
+
     const toUserAccount = await accountModel.findOne({
         _id: toAccount
     })

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,8 +8,27 @@ import "../assets/Navbar.css";
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isSystemUser, setIsSystemUser] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            checkSystemUser();
+        }
+    }, [isLoggedIn]);
+
+    const checkSystemUser = async () => {
+        try {
+            const res = await axios.get(
+                `${import.meta.env.VITE_API_BASE_URL}/api/auth/check-system-user`,
+                { withCredentials: true }
+            );
+            setIsSystemUser(res.data.isSystemUser);
+        } catch (err) {
+            setIsSystemUser(false);
+        }
+    };
 
     const handleLogout = async () => {
         try {
@@ -54,6 +73,9 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                         <NavLink to="/sendmoney" onClick={() => setIsOpen(false)}>Send Money</NavLink>
                         <NavLink to="/transaction" onClick={() => setIsOpen(false)}>Transactions</NavLink>
                         <NavLink to = '/setting' onClick={() => setIsOpen(false)}>Settings</NavLink>
+                        {isSystemUser && (
+                            <NavLink to='/initial-funds' onClick={() => setIsOpen(false)}>Initial Funds</NavLink>
+                        )}
                       
                         <button onClick={handleLogout} style={{padding: "10px", background: "red", color: "white", border: "none", borderRadius: "4px", cursor: "pointer",width:"80px"}}>
                             Logout

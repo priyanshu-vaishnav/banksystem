@@ -37,6 +37,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+
 .balance-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(37, 99, 235, 0.35);
