@@ -39,7 +39,7 @@ function InitialFunds() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/transaction/system/initialfunds`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/transactions/system/initialfunds`,
         { toAccount, amount: parseFloat(amount), transactionId },
         { withCredentials: true }
       );
